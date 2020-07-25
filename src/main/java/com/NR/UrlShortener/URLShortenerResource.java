@@ -14,6 +14,7 @@ import com.google.common.hash.Hashing;
 public class URLShortenerResource{
     @Autowired
     StringRedisTemplate redisTemp;
+    // Jedis jedis;
 
     @GetMapping("/{id}")
     public RedirectView getLongUrl(@PathVariable String id){
