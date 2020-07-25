@@ -68,6 +68,26 @@ http://localhost:8080/rest/url/4d4f2dca
 Redirects to Murmur page
 
 
+## Docker setup and execution
+
+Run Maven Install
+```
+mvn clean install
+```
+Build it with Docker
+```
+sudo docker-compose build
+```
+Run it up with Docker
+```
+sudo docker-compose up
+```
+
+Done! and you can test it the same way as seen above
+
+## Automated Tests
+
+On the way
 
 ## Authors
 
