@@ -2,15 +2,15 @@ version: '3.3'
 
   
 services:
-
+  # Spring boot app service
   web:
     depends_on:
       - redis
+    # This builds from dockerfile within current Directory
     build: .
-    # stdin_open: true
-    # tty: true
+
     environment: 
-      SPRING_REDIS.HOST: redis
+      SPRING_REDIS_HOST: redis
 
     ports:
       - "8080:8080"
@@ -26,6 +26,7 @@ services:
     links:
       - redis:localhost
 
+  # Redis Service
   redis:
     image: redis
     command: [ "redis-server", "--protected-mode", "no" ]
@@ -35,23 +36,6 @@ services:
       - "6379:6379"
     networks:
       - backend
-
-
-    # image: redis
-    
-    # stdin_open: true
-    # tty: true
-    # networks:
-    #         - spring-cloud-network 
-      
-    # build: ./Redis
-    # # # hostname: redisDB
-    # hostname: redis
-      
-    # ports:
-    #   - "6379:6379"
-    # networks:
-    #   - backend
 
 
 networks:
