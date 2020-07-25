@@ -9,12 +9,13 @@ services:
     build: .
     # stdin_open: true
     # tty: true
-    hostname: redis
+    environment: 
+      SPRING_REDIS.HOST: redis
 
     ports:
       - "8080:8080"
     networks:
-      - frontend
+      - backend
     # volumes:
     #   - type: bind
     #     source: "./target"
@@ -23,9 +24,19 @@ services:
     # entrypoint: ["java", "-jar", "URLShortener-0.0.1-SNAPSHOT.jar"]
 
     links:
-      - redis
+      - redis:localhost
 
   redis:
+    image: redis
+    command: [ "redis-server", "--protected-mode", "no" ]
+    hostname:
+      redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+
     # image: redis
     
     # stdin_open: true
@@ -33,19 +44,19 @@ services:
     # networks:
     #         - spring-cloud-network 
       
-    build: ./Redis
-    # # hostname: redisDB
-    # hostname: "0.0.0.0"
+    # build: ./Redis
+    # # # hostname: redisDB
+    # hostname: redis
       
-    ports:
-      - "6379:6379"
-    networks:
-      - backend
+    # ports:
+    #   - "6379:6379"
+    # networks:
+    #   - backend
 
 
 networks:
   backend:
-  frontend:        
+          
     
 
         
