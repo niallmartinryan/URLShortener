@@ -54,4 +54,15 @@ public class URLShortenerResource{
         }
         throw new RuntimeException("URL is Invalid" + url);
     }
+
+    // Delete Entry
+    @DeleteMapping
+    public String deleteEntry(@RequestBody String id){
+
+        // remove ID from database
+        redisTemp.delete(id);
+
+        // return id of the url which was removed if succesful
+        return id;  
+    }
 }
